@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Quade_Spellman_s_Singleton</RootNamespace>
+  </PropertyGroup>
+
+</Project>
