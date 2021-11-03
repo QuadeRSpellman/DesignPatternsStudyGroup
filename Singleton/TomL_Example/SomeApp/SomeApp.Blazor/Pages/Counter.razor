@@ -1,0 +1,22 @@
+﻿@page "/counter"
+@using SomeApp.Blazor.Services.Implementations
+@using SomeApp.Blazor.Services.Interfaces
+@using SomeApp.Blazor.Services.Models
+@inject IGlobalInfo globalInfo
+
+<h1>Fake User Debug Menu</h1>
+
+<button class="btn btn-primary" @onclick="AddUser">Add User</button>
+<button class="btn btn-primary" @onclick="RemoveUser">Remove User</button>
+
+@code {
+  private async void AddUser()
+  {
+    await globalInfo.AddUserOnlineAsync(new User() { Name = "Some User", Identifier = Guid.NewGuid() });
+  }
+
+  private async void RemoveUser()
+  {
+      await globalInfo.RemoveUserOnlineAsync(await globalInfo.GetLastUserOnlineAsync());
+  }
+}
