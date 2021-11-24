@@ -1,0 +1,63 @@
+﻿@page "/command-pattern-example"
+
+<p>
+		<input @bind="@_inputValue" />
+</p>
+
+<p>
+		<code>InputValue: </code>@_inputValue
+</p>
+
+<h1>
+		@((MarkupString)@_renderedText)
+</h1>
+
+
+<button @onclick="Bold">Bold</button>
+<button @onclick="Italics">Italics</button>
+<button @onclick="Underline">Underline</button>
+<div />
+<button @onclick="Undo">Undo</button>
+
+@code {
+		public string? _inputValue;
+		public string _renderedText;
+		public string RenderedText
+		{
+				get => _renderedText != null ? _renderedText : _inputValue;
+				set => RenderedText = value;
+		}
+
+		public RenderFragment _renderFragment;
+		private CommandManager _commandManager;
+
+		protected override void OnInitialized()
+		{
+				_commandManager = new CommandManager();
+				_renderedText = _inputValue;
+		}
+
+		private void Underline()
+		{
+				_renderedText = _commandManager.ExecuteCommand(new UnderlineCommand(RenderedText));
+		}
+
+		private void Bold()
+		{
+				_renderedText = _commandManager.ExecuteCommand(new BoldCommand(RenderedText));
+		}
+
+		private void Italics()
+		{
+				_renderedText = _commandManager.ExecuteCommand(new ItalicsCommand(RenderedText));
+		}
+
+		private void Undo()
+		{
+				_renderedText = _commandManager.UndoCommand();
+		}
+
+
+
+
+}

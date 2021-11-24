@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bero_CommandPattern", "Bero_CommandPattern\Bero_CommandPattern.csproj", "{6C3D57DA-C2A8-44DE-852B-3F05E4E0200D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C3D57DA-C2A8-44DE-852B-3F05E4E0200D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3D57DA-C2A8-44DE-852B-3F05E4E0200D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3D57DA-C2A8-44DE-852B-3F05E4E0200D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C3D57DA-C2A8-44DE-852B-3F05E4E0200D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5DBA296-9C76-4084-B74C-100C0F38172D}
+	EndGlobalSection
+EndGlobal
