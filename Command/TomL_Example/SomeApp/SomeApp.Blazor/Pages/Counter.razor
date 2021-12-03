@@ -1,0 +1,60 @@
+﻿@page "/counter"
+@using SomeApp.Blazor.Services.Implementations
+@using SomeApp.Blazor.Services.Interfaces
+@using SomeApp.Blazor.Services.Models
+@inject IGlobalInfo globalInfo
+@inject CommandManager commandManager
+
+<h1>Fake User Debug Menu</h1>
+
+<button class="btn btn-primary" @onclick="AddUser">Add User</button>
+<button class="btn btn-primary" @onclick="RemoveUser">Remove User</button>
+<button class="btn btn-primary" @onclick="Undo">Undo</button>
+
+<br /><br />
+
+Number of Users Online: @currentCount
+
+<ol>
+  @foreach(User user in @users)
+  {
+    <li>@user.Name ||| @user.Identifier</li>
+  }
+</ol>
+
+@code {
+  private int currentCount;
+  private List<User> users;
+
+  protected override async Task OnInitializedAsync()
+  {
+    Refresh().Wait();
+  }
+
+  private async void AddUser()
+  {
+    AddUserCommand addUserCommand = new AddUserCommand(globalInfo, new User() { Name = "Some User", Identifier = Guid.NewGuid() });
+    commandManager.Invoke(addUserCommand);
+    await Refresh();
+  }
+
+  private async void RemoveUser()
+  {
+    User lastUser = await globalInfo.GetLastUserOnlineAsync();
+    RemoveUserCommand addUserCommand = new RemoveUserCommand(globalInfo, lastUser);
+    commandManager.Invoke(addUserCommand);
+    await Refresh();
+  }
+
+  private async void Undo()
+  {
+    commandManager.Undo(); 
+    await Refresh();
+  }
+
+  private async Task Refresh()
+  {
+    currentCount = await globalInfo.GetCurrentUserCountAsync();
+    users = await globalInfo.GetAllUsersOnlineAsync();
+  }
+}
