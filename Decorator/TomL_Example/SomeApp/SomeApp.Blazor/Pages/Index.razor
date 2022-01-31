@@ -1,0 +1,28 @@
+﻿@page "/"
+@using SomeApp.Blazor.Services.Implementations
+@using SomeApp.Blazor.Services.Interfaces
+@using SomeApp.Blazor.Services.Models
+@using System.Collections
+@inject IGlobalInfo globalInfo
+
+<h1>Hello, world!</h1>
+
+Number of Users Online: @currentCount
+
+<ol>
+  @foreach(User user in @users)
+  {
+    <li>@user.Name ||| @user.Identifier</li>
+  }
+</ol>
+
+@code {
+  private int currentCount;
+  private List<User> users;
+
+  protected override async Task OnInitializedAsync()
+  {
+      currentCount = await globalInfo.GetCurrentUserCountAsync();
+      users = await globalInfo.GetAllUsersOnlineAsync();
+  }
+}
